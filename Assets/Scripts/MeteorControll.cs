@@ -1,16 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeteorControll : MonoBehaviour
 {
     public float RotationSpeed;  //forgas sebessege
     public Vector2 Speed; //mozgas
+    public MeteorControll SpawnAfterKill;
 
     void Update(){
         RotMeteor();
         MovMeteor();
+    }
+    private void OnTriggerEnter2D(Collider2D other) {    //lovedekkel utkozes
+        ShootControll Bullet = other.GetComponent<ShootControll>();
+        if(Bullet != null) {
+            OnHit(Bullet);
+        }
+    }
+
+    private void OnHit (ShootControll bullet) {
+        Destroy(bullet.gameObject);
+        if (SpawnAfterKill != null){
+            MeteorControll i = Instantiate(SpawnAfterKill);
+            i.transform.position = this.transform.position;
+            i.RotationSpeed = RotationSpeed;
+            i.Speed = Speed;
+        }
+
+        Destroy(this.gameObject);
     }
 
     private void RotMeteor(){

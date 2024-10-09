@@ -8,7 +8,7 @@ public class MeteorSpawner : MonoBehaviour
 {
     public float spawnrate;  // milyen gyorsan spawnol
     public float lastspwan;
-    public float minrot, maxrot;  // forgás gyorsasága
+    public float minrot = -90, maxrot = 90;  // forgás gyorsasága
 
     public Transform minspawnpoint, maxspawnpoint;
 

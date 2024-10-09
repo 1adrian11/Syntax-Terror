@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player_Movement : MonoBehaviour
 {
     public float speed;
     public Vector2 velocity = new (0,0); //hajo helyzet
     public Vector2 maxpos, minpos; // max/min pozicio (ne menjen ki a kepbol)
+    public Transform MainWeapon;
+    public GameObject BulletType;
 
     void Update(){
         Movement();
+        Fire();
         Moveship();
+    }
+
+    private void Fire (){
+        if(Input.GetButtonDown("Fire1")) {
+            GameObject bullet = Instantiate(BulletType);
+            bullet.transform.position = MainWeapon.position;
+        }
     }
 
     private void Movement(){
