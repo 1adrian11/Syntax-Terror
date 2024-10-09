@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7683785462083805387}
   - component: {fileID: 866228172333823739}
   - component: {fileID: -120919528149668236}
+  - component: {fileID: 2140187478697888108}
   m_Layer: 0
   m_Name: grey_met_big
   m_TagString: Untagged
@@ -187,3 +188,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2140187478697888108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035584159893956026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57985d9d51bc2514989852d72bd13e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

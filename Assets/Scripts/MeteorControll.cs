@@ -26,13 +26,11 @@ public class MeteorControll : MonoBehaviour
         Destroy(bullet.gameObject);
 
         if (SpawnAfterKill != null){
-            // Első meteor létrehozása az eredeti sebességgel
             MeteorControll meteor1 = Instantiate(SpawnAfterKill);
             meteor1.transform.position = this.transform.position;
             meteor1.RotationSpeed = RotationSpeed;
             meteor1.Speed = Speed; // eredeti sebesség
 
-            // Második meteor létrehozása, az X sebesség negálva
             MeteorControll meteor2 = Instantiate(SpawnAfterKill);
             meteor2.transform.position = this.transform.position;
             meteor2.RotationSpeed = RotationSpeed;

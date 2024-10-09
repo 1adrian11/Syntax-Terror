@@ -376,6 +376,7 @@ GameObject:
   - component: {fileID: 1522346202}
   - component: {fileID: 1522346201}
   - component: {fileID: 1522346203}
+  - component: {fileID: 1522346204}
   m_Layer: 0
   m_Name: PlayerShip_b1
   m_TagString: Untagged
@@ -444,7 +445,7 @@ Transform:
   m_GameObject: {fileID: 1522346199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -1.46, z: 0}
+  m_LocalPosition: {x: 0.07, y: -3.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -469,6 +470,27 @@ MonoBehaviour:
   minpos: {x: -8.281532, y: -4.557662}
   MainWeapon: {fileID: 1165827951}
   BulletType: {fileID: 6476395200455973237, guid: f134d87d6229395449ddbc2756a8246e, type: 3}
+--- !u!95 &1522346204
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522346199}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1816915509
 GameObject:
   m_ObjectHideFlags: 0

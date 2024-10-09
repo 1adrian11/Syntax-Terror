@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2693070496991703908}
   - component: {fileID: -5684692239779114982}
   - component: {fileID: 7544108189732723926}
+  - component: {fileID: 6360609274468996298}
   m_Layer: 0
   m_Name: brown_met_med
   m_TagString: Untagged
@@ -183,3 +184,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6360609274468996298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272564581311116945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57985d9d51bc2514989852d72bd13e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
