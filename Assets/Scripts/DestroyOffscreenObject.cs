@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class DestroyOffscreenObject : MonoBehaviour
 {
-
+ // asd
     void Update()
     {
         Vector2 posi = gameObject.transform.position;
