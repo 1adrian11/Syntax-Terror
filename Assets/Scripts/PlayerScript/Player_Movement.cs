@@ -10,14 +10,17 @@ using UnityEngine.UIElements;
 public class Player_Movement : MonoBehaviour
 {
     public float speed;
+    public float BoostDuration;  //mennyi ideig legyen immunis pawn utan
     public Vector2 velocity = new (0,0); //hajo helyzet
     public Vector2 maxpos, minpos; // max/min pozicio (ne menjen ki a kepbol)
     public Transform MainWeapon;
     public GameObject BulletType;
+    public PlayerSpawner PlayerSpawner;
 
     void Update(){
         Movement();
         Fire();
+        Boost();
         Moveship();
     }
 
@@ -57,5 +60,19 @@ public class Player_Movement : MonoBehaviour
         new_x = Mathf.Clamp(new_x, minpos.x, maxpos.x);  //ne menjen ki a kepbol
         new_y = Mathf.Clamp(new_y, minpos.y, maxpos.y);
         transform.position = new Vector2(new_x, new_y);
+    }
+
+    //utkozes
+    private void OnTriggerEnter2D(Collider2D other) {
+        MeteorControll i = other.GetComponent<MeteorControll>();
+        if(i != null && BoostDuration <= 0) {  //boostnal ne destroyoljon (spawn utan x masodpercig)
+            PlayerSpawner.DestroyMark(this);
+
+        }
+    }
+
+    private void Boost (){
+        BoostDuration -= Time.deltaTime; //idovel jarjon le a boost
+        BoostDuration = Mathf.Max(0,BoostDuration);
     }
 }
