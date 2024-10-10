@@ -259,10 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceec5d68128c49e47b47e5bd149ec5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 4927991836115648532, guid: 72c79ca2356fd2a4182b84ad25042430, type: 3}
-  Spawnpoint: {fileID: 1562963516}
-  SpawnDelay: 2
-  WhereSpawn: -1
+  <Player>k__BackingField: {fileID: 4927991836115648532, guid: 72c79ca2356fd2a4182b84ad25042430, type: 3}
+  <Spawnpoint>k__BackingField: {fileID: 1562963516}
+  <SpawnDelay>k__BackingField: 2
+  <WhereSpawn>k__BackingField: -1
 --- !u!1 &1166978260
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,18 +323,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a35799b65bd08439fa0589e83395a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnrate: 1
-  lastspwan: 0
-  minrot: -90
-  maxrot: 90
-  minspawnpoint: {fileID: 1816915510}
-  maxspawnpoint: {fileID: 1166978261}
-  minspeed: {x: -1, y: -3}
-  maxspeed: {x: 1, y: -1}
-  Template1: {fileID: 6887084609143163695, guid: aebc71e7a65ec5b418dfffbded04f729, type: 3}
-  Template2: {fileID: 2693070496991703908, guid: c460762707631e9449d98a6156bd3d1d, type: 3}
-  Template3: {fileID: 7683785462083805387, guid: 8f9bb4fba37143c46af14b2b85e8c699, type: 3}
-  Template4: {fileID: 1998171690061186110, guid: a2bc732c36768ce46ae43a736a67da09, type: 3}
+  <spawnrate>k__BackingField: 0.3
+  <lastspawn>k__BackingField: 0
+  <minrot>k__BackingField: -90
+  <maxrot>k__BackingField: 90
+  <minspawnpoint>k__BackingField: {fileID: 1816915510}
+  <maxspawnpoint>k__BackingField: {fileID: 1166978261}
+  <minspeed>k__BackingField: {x: -1, y: -1}
+  <maxspeed>k__BackingField: {x: 1, y: -3}
+  <Template1>k__BackingField: {fileID: 6887084609143163695, guid: aebc71e7a65ec5b418dfffbded04f729, type: 3}
+  <Template2>k__BackingField: {fileID: 2693070496991703908, guid: c460762707631e9449d98a6156bd3d1d, type: 3}
+  <Template3>k__BackingField: {fileID: 7683785462083805387, guid: 8f9bb4fba37143c46af14b2b85e8c699, type: 3}
+  <Template4>k__BackingField: {fileID: 1998171690061186110, guid: a2bc732c36768ce46ae43a736a67da09, type: 3}
 --- !u!4 &1414786771
 Transform:
   m_ObjectHideFlags: 0
@@ -376,8 +376,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562963515}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.03, y: -0.03, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.03, y: -0.029999971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

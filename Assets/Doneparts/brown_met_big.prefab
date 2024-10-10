@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c982a718ed1474a9f7c22707fb9e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 0
-  Speed: {x: 0, y: -1}
-  SpawnAfterKill: {fileID: 2693070496991703908, guid: c460762707631e9449d98a6156bd3d1d, type: 3}
+  <RotationSpeed>k__BackingField: 0
+  <Speed>k__BackingField: {x: 0, y: 0}
+  <SpawnAfterKill>k__BackingField: {fileID: 2693070496991703908, guid: c460762707631e9449d98a6156bd3d1d, type: 3}
 --- !u!60 &3600881473113428920
 PolygonCollider2D:
   m_ObjectHideFlags: 0

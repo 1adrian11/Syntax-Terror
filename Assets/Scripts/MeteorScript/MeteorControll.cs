@@ -6,9 +6,19 @@ using UnityEngine;
 
 public class MeteorControll : MonoBehaviour
 {
-    public float RotationSpeed;  // forgás sebessége
-    public Vector2 Speed; // mozgás sebessége
-    public MeteorControll SpawnAfterKill;
+    [field: SerializeField]
+    public float RotationSpeed {get; private set;}  // forgás sebessége
+    [field: SerializeField]
+    public Vector2 Speed {get; private set;} // mozgás sebessége
+    [field: SerializeField]
+    public MeteorControll SpawnAfterKill {get; private set;}
+
+    public static MeteorControll Spawn(MeteorControll i, float RotSpeed, Vector2 speed1){
+        MeteorControll meteor = Instantiate(i);
+        meteor.RotationSpeed = RotSpeed;
+        meteor.Speed = speed1;
+        return meteor;
+    }
 
     void Update(){
         RotMeteor();

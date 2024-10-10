@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShootControll : MonoBehaviour
 {
-
-    public Vector2 speed;
+    [field: SerializeField]
+    public Vector2 speed {get; private set;}
 
 
     void Update()

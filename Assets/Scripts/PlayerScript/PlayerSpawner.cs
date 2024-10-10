@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-
-    public Player_Movement Player;  //hajo pusztulasakor amit spawnol
-    public Transform Spawnpoint;
-    public float SpawnDelay;  //mennyi ido a respawnhoz
-    public float WhereSpawn = -1;
+    [field: SerializeField]
+    public Player_Movement Player {get; private set;}  //hajo pusztulasakor amit spawnol
+    [field: SerializeField]
+    public Transform Spawnpoint {get; private set;}
+    [field: SerializeField]
+    public float SpawnDelay {get; private set;}   //mennyi ido a respawnhoz
+    [field: SerializeField]
+    public float WhereSpawn {get; private set;} = -1;
     void Start()
     {
         Spawnplayer();
@@ -27,8 +30,7 @@ public class PlayerSpawner : MonoBehaviour
     }
 
     private void Spawnplayer (){
-        Player_Movement pl = Instantiate(Player);
-        pl.PlayerSpawner = this;
+        Player_Movement pl = Player_Movement.Spawn(Player, this);
         pl.transform.position = Spawnpoint.position;
         WhereSpawn = -1;
     }

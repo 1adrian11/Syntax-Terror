@@ -9,14 +9,28 @@ using UnityEngine.UIElements;
 
 public class Player_Movement : MonoBehaviour
 {
-    public float speed;
-    public float BoostDuration;  //mennyi ideig legyen immunis pawn utan
-    public Vector2 velocity = new (0,0); //hajo helyzet
-    public Vector2 maxpos, minpos; // max/min pozicio (ne menjen ki a kepbol)
-    public Transform MainWeapon;
-    public GameObject BulletType;
-    public PlayerSpawner PlayerSpawner;
+    [field: SerializeField]
+    public float speed {get; private set;}
+    [field: SerializeField]
+    public float BoostDuration {get; private set;}  //mennyi ideig legyen immunis pawn utan
+    [field: SerializeField]
+    public Vector2 velocity {get; private set;} = new (0,0); //hajo helyzet
+    [field: SerializeField]
+    public Vector2 maxpos {get; private set;} 
+    [field: SerializeField]
+    public Vector2 minpos {get; private set;} // max/min pozicio (ne menjen ki a kepbol)
+    [field: SerializeField]
+    public Transform MainWeapon {get; private set;}
+    [field: SerializeField]
+    public GameObject BulletType {get; private set;}
+    [field: SerializeField]
+    public PlayerSpawner PlayerSpawner {get; private set;}
 
+    public static Player_Movement Spawn(Player_Movement pm, PlayerSpawner i){
+        Player_Movement pl = Instantiate(pm);
+        pl.PlayerSpawner = i;
+        return pl;
+    }
     void Update(){
         Movement();
         Fire();
@@ -71,8 +85,26 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    private void Boost (){
-        BoostDuration -= Time.deltaTime; //idovel jarjon le a boost
-        BoostDuration = Mathf.Max(0,BoostDuration);
+    private void Boost() {
+        // Ellenőrizzük, hogy van-e Renderer komponens
+        Renderer renderer = this.GetComponent<Renderer>();
+
+        if (BoostDuration > 0) {
+            // elso f-es szamok a szin, masodik helyen a szamok a villogas intenzitas
+            float alpha = Mathf.Lerp(0.05f, 1f, Mathf.PingPong(Time.time * 4, 1)); 
+
+            Color color = renderer.material.color;
+            color.a = alpha;
+            renderer.material.color = color;
+        } 
+        else {
+            // Boost után, eredeti alpha érték
+            Color color = renderer.material.color;
+            color.a = 1f; // teljesen átlátszatlan
+            renderer.material.color = color;
+        }
+
+        BoostDuration -= Time.deltaTime; // Idővel járjon le a boost
+        BoostDuration = Mathf.Max(0, BoostDuration);
     }
 }
