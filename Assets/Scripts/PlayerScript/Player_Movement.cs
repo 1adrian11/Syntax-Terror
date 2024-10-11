@@ -38,10 +38,20 @@ public class Player_Movement : MonoBehaviour
         Moveship();
     }
 
-    private void Fire (){
-        if(Input.GetButtonDown("Fire1")) {
+    private void Fire() {
+        if (Input.GetButtonDown("Fire1")) {
             GameObject bullet = Instantiate(BulletType);
             bullet.transform.position = MainWeapon.position;
+
+            // lövedék dőlése = hajó aktuális dőlése
+            bullet.transform.rotation = transform.rotation;
+
+            ShootControll bulletScript = bullet.GetComponent<ShootControll>();
+            if (bulletScript != null) {
+                // sebesség a lövedék irányához (szögéhez) képest
+                Vector2 direction = bullet.transform.up;
+                bulletScript.SetSpeed(direction * bulletScript.GetSpeedMagnitude());
+            }
         }
     }
 
@@ -69,11 +79,25 @@ public class Player_Movement : MonoBehaviour
     }
     
     private void Moveship(){
-        float new_x = transform.position.x + (velocity.x*speed*Time.deltaTime);  //mozgas
-        float new_y = transform.position.y + (velocity.y*speed*Time.deltaTime);
-        new_x = Mathf.Clamp(new_x, minpos.x, maxpos.x);  //ne menjen ki a kepbol
+        // Mozgatás
+        float new_x = transform.position.x + (velocity.x * speed * Time.deltaTime);
+        float new_y = transform.position.y + (velocity.y * speed * Time.deltaTime);
+        new_x = Mathf.Clamp(new_x, minpos.x, maxpos.x);
         new_y = Mathf.Clamp(new_y, minpos.y, maxpos.y);
         transform.position = new Vector2(new_x, new_y);
+    
+        if (velocity.x != 0) {
+            // Dőlés szög meghatározás
+            float tiltAngle = Mathf.Lerp(0, 20, Mathf.Abs(velocity.x));  // x foknyi döntés
+            tiltAngle *= Mathf.Sign(velocity.x);
+        
+            Quaternion targetRotation = Quaternion.Euler(0, 0, -tiltAngle);  // Negatív szög a jobbra dőléshez
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5);  // Fokozatos dőlés
+        } 
+        else {
+            Quaternion targetRotation = Quaternion.Euler(0, 0, 0);  // Alaphelyzet
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5);  // Lassan térjen vissza
+        }
     }
 
     //utkozes
