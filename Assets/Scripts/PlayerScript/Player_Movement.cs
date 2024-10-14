@@ -88,7 +88,7 @@ public class Player_Movement : MonoBehaviour
     
         if (velocity.x != 0) {
             // Dőlés szög meghatározás
-            float tiltAngle = Mathf.Lerp(0, 20, Mathf.Abs(velocity.x));  // x foknyi döntés
+            float tiltAngle = Mathf.Lerp(0, 50, Mathf.Abs(velocity.x));  // x foknyi döntés
             tiltAngle *= Mathf.Sign(velocity.x);
         
             Quaternion targetRotation = Quaternion.Euler(0, 0, -tiltAngle);  // Negatív szög a jobbra dőléshez
