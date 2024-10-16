@@ -182,12 +182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361aae1b7b433b140872b3c67d3b672b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <speed>k__BackingField: 5
+  <speed>k__BackingField: 8
   <BoostDuration>k__BackingField: 3
   <velocity>k__BackingField: {x: 0, y: 0}
   <maxpos>k__BackingField: {x: 8.288521, y: 4.542205}
   <minpos>k__BackingField: {x: -8.288521, y: -4.542205}
   <MainWeapon>k__BackingField: {fileID: 8924216200163117936}
+  <MainWeapon2>k__BackingField: {fileID: 0}
+  <MainWeapon3>k__BackingField: {fileID: 0}
   <BulletType>k__BackingField: {fileID: 6476395200455973237, guid: f134d87d6229395449ddbc2756a8246e, type: 3}
   <PlayerSpawner>k__BackingField: {fileID: 0}
 --- !u!1 &7324443804201601404

@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceec5d68128c49e47b47e5bd149ec5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 4927991836115648532, guid: 72c79ca2356fd2a4182b84ad25042430, type: 3}
+  <Player>k__BackingField: {fileID: 9185736002480521219, guid: dd001c3717212994d9112799c5560d6d, type: 3}
   <Spawnpoint>k__BackingField: {fileID: 1562963516}
   <SpawnDelay>k__BackingField: 2
   <WhereSpawn>k__BackingField: -1
@@ -787,7 +787,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

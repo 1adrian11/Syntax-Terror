@@ -21,6 +21,10 @@ public class Player_Movement : MonoBehaviour
     public Vector2 minpos {get; private set;} // max/min pozicio (ne menjen ki a kepbol)
     [field: SerializeField]
     public Transform MainWeapon {get; private set;}
+        [field: SerializeField]
+    public Transform MainWeapon2 {get; private set;}
+        [field: SerializeField]
+    public Transform MainWeapon3 {get; private set;}
     [field: SerializeField]
     public GameObject BulletType {get; private set;}
     [field: SerializeField]
@@ -40,17 +44,25 @@ public class Player_Movement : MonoBehaviour
 
     private void Fire() {
         if (Input.GetButtonDown("Fire1")) {
-            GameObject bullet = Instantiate(BulletType);
-            bullet.transform.position = MainWeapon.position;
+            // összes fegyver
+            List<Transform> weapons = new List<Transform> { MainWeapon, MainWeapon2, MainWeapon3 };
 
-            // lövedék dőlése = hajó aktuális dőlése
-            bullet.transform.rotation = transform.rotation;
+            // Minden fegyverhez külön lövedék
+            foreach (Transform weapon in weapons) {
+                if (weapon != null) {
+                    GameObject bullet = Instantiate(BulletType);
+                    bullet.transform.position = weapon.position;
 
-            ShootControll bulletScript = bullet.GetComponent<ShootControll>();
-            if (bulletScript != null) {
-                // sebesség a lövedék irányához (szögéhez) képest
-                Vector2 direction = bullet.transform.up;
-                bulletScript.SetSpeed(direction * bulletScript.GetSpeedMagnitude());
+                    // Lövedék dőlése = hajó aktuális dőlése
+                    bullet.transform.rotation = transform.rotation;
+
+                    ShootControll bulletScript = bullet.GetComponent<ShootControll>();
+                    if (bulletScript != null) {
+                        // Sebesség a lövedék irányához (szögéhez) képest
+                        Vector2 direction = bullet.transform.up;
+                        bulletScript.SetSpeed(direction * bulletScript.GetSpeedMagnitude());
+                    }
+                }
             }
         }
     }
