@@ -1,0 +1,14 @@
+
+
+
+
+
+- mozgo waypointok, hogy random helyekre menjen az enemy
+
+- fix waypointok, hogy kiismerheo legyen a mozgas
+
+
+
+- nehezites: utolso szinten meghibasodik a fegyver, random iranyokba kezd loni (x random értékeket vesz fel)
+
+

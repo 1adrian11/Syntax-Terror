@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -5684692239779114982}
   - component: {fileID: 7544108189732723926}
   - component: {fileID: 6360609274468996298}
+  - component: {fileID: -6169682422224451381}
   m_Layer: 0
   m_Name: brown_met_med
   m_TagString: Untagged
@@ -100,9 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c982a718ed1474a9f7c22707fb9e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 0
-  Speed: {x: 0, y: -1.5}
-  SpawnAfterKill: {fileID: 0}
+  <RotationSpeed>k__BackingField: 0
+  <Speed>k__BackingField: {x: 0, y: 0}
+  <SpawnAfterKill>k__BackingField: {fileID: 0}
 --- !u!60 &-5684692239779114982
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -194,5 +195,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57985d9d51bc2514989852d72bd13e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6169682422224451381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272564581311116945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155ff885ac9c64a489c6b5f8f599b234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

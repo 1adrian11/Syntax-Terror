@@ -21,9 +21,9 @@ public class Player_Movement : MonoBehaviour
     public Vector2 minpos {get; private set;} // max/min pozicio (ne menjen ki a kepbol)
     [field: SerializeField]
     public Transform MainWeapon {get; private set;}
-        [field: SerializeField]
+    [field: SerializeField]
     public Transform MainWeapon2 {get; private set;}
-        [field: SerializeField]
+    [field: SerializeField]
     public Transform MainWeapon3 {get; private set;}
     [field: SerializeField]
     public GameObject BulletType {get; private set;}
@@ -39,7 +39,7 @@ public class Player_Movement : MonoBehaviour
         Movement();
         Fire();
         Boost();
-        Moveship();
+        Move();
     }
 
     private void Fire() {
@@ -90,7 +90,7 @@ public class Player_Movement : MonoBehaviour
         */
     }
     
-    private void Moveship(){
+    private void Move(){
         // Mozgatás
         float new_x = transform.position.x + (velocity.x * speed * Time.deltaTime);
         float new_y = transform.position.y + (velocity.y * speed * Time.deltaTime);
@@ -114,8 +114,8 @@ public class Player_Movement : MonoBehaviour
 
     //utkozes
     private void OnTriggerEnter2D(Collider2D other) {
-        MeteorControll i = other.GetComponent<MeteorControll>();
-        if(i != null && BoostDuration <= 0) {  //boostnal ne destroyoljon (spawn utan x masodpercig)
+        DamageToPlayer damage = other.GetComponent<DamageToPlayer>();
+        if(damage != null && BoostDuration <= 0) {  //boostnal ne destroyoljon (spawn utan x masodpercig)
             PlayerSpawner.DestroyMark(this);
 
         }
