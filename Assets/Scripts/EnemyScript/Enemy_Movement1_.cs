@@ -46,6 +46,13 @@ public class Enemy_Movement_1 : MonoBehaviour
     [field: SerializeField]
     public Transform BulletSpawn {get; private set;}
 
+    public static Enemy_Movement_1 SpawnEnemy(Enemy_Interface ship){
+        Enemy_Movement_1 NextEnemy = Instantiate(ship.Prefab);
+        NextEnemy.MovementBorder = ship.Borders;
+        NextEnemy.transform.position = ship.SpawnPoint;
+        return NextEnemy;
+    }
+
 
     void Start(){
         IfFire = Time.time;
@@ -79,5 +86,17 @@ public class Enemy_Movement_1 : MonoBehaviour
             bull.transform.position = BulletSpawn.position;  // a hajo elott jojjon letre a bullet
             IfFire = Time.time;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {    // lövedékkel ütközés
+        ShootControll Bullet = other.GetComponent<ShootControll>();
+        if(Bullet != null) {
+            IfHit(Bullet);
+        }
+    }
+
+    private void IfHit(ShootControll bullet) {
+        Destroy(this.gameObject);
+        Destroy(bullet.gameObject);
     }
 }

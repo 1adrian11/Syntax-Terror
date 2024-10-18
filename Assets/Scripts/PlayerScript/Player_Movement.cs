@@ -28,9 +28,9 @@ public class Player_Movement : MonoBehaviour
     [field: SerializeField]
     public GameObject BulletType {get; private set;}
     [field: SerializeField]
-    public PlayerSpawner PlayerSpawner {get; private set;}
+    public ShipSpawner PlayerSpawner {get; private set;}
 
-    public static Player_Movement Spawn(Player_Movement pm, PlayerSpawner i){
+    public static Player_Movement Spawn(Player_Movement pm, ShipSpawner i){
         Player_Movement pl = Instantiate(pm);
         pl.PlayerSpawner = i;
         return pl;
@@ -112,8 +112,8 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    //utkozes
-    private void OnTriggerEnter2D(Collider2D other) {
+    
+    private void OnTriggerEnter2D(Collider2D other) { //player kaput
         DamageToPlayer damage = other.GetComponent<DamageToPlayer>();
         if(damage != null && BoostDuration <= 0) {  //boostnal ne destroyoljon (spawn utan x masodpercig)
             PlayerSpawner.DestroyMark(this);
