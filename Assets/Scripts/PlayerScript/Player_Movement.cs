@@ -16,7 +16,7 @@ public class Player_Movement : MonoBehaviour
     [field: SerializeField]
     public Vector2 velocity {get; private set;} = new (0,0); //hajo helyzet
     [field: SerializeField]
-    public Vector2 maxpos {get; private set;} 
+    public Vector2 maxpos {get; private set;}
     [field: SerializeField]
     public Vector2 minpos {get; private set;} // max/min pozicio (ne menjen ki a kepbol)
     [field: SerializeField]
@@ -45,10 +45,10 @@ public class Player_Movement : MonoBehaviour
     private void Fire() {
         if (Input.GetButtonDown("Fire1")) {
             // összes fegyver
-            List<Transform> weapons = new List<Transform> { MainWeapon, MainWeapon2, MainWeapon3 };
+            List<Transform> weaponSpawnpoint = new List<Transform> { MainWeapon, MainWeapon2, MainWeapon3 };
 
             // Minden fegyverhez külön lövedék
-            foreach (Transform weapon in weapons) {
+            foreach (Transform weapon in weaponSpawnpoint) {
                 if (weapon != null) {
                     GameObject bullet = Instantiate(BulletType);
                     bullet.transform.position = weapon.position;

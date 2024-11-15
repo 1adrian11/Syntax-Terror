@@ -19,7 +19,7 @@ public class ShootControll : MonoBehaviour
         Debug.Log($"{this}.OnTriggerEnter2D({other})");
     }
 
-    private void BulletMove(){
+    private void BulletMove(){ 
         float x_coord, y_coord;
         x_coord = transform.position.x + (speed.x * Time.deltaTime);
         y_coord = transform.position.y + (speed.y * Time.deltaTime);

@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(Destroy_score))]
 public class MeteorControll : MonoBehaviour
 {
     [field: SerializeField]
@@ -11,10 +12,12 @@ public class MeteorControll : MonoBehaviour
     [field: SerializeField]
     public Vector2 Speed {get; private set;} // mozgás sebessége
     [field: SerializeField]
+    //private ShipSpawner Cont;
     public MeteorControll SpawnAfterKill {get; private set;}
 
-    public static MeteorControll Spawn(MeteorControll i, float RotSpeed, Vector2 speed1){
+    public static MeteorControll Spawn(MeteorControll i, float RotSpeed, Vector2 speed1, ShipSpawner Controller){
         MeteorControll meteor = Instantiate(i);
+        meteor.GetComponent<Destroy_score>().Controller = Controller;
         meteor.RotationSpeed = RotSpeed;
         meteor.Speed = speed1;
         return meteor;
@@ -25,17 +28,13 @@ public class MeteorControll : MonoBehaviour
         MovMeteor();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {    // lövedékkel ütközés
-        ShootControll Bullet = other.GetComponent<ShootControll>();
-        if(Bullet != null) {
-            OnHit(Bullet);
-        }
-    }
-
-    private void OnHit(ShootControll bullet) {
-        Destroy(bullet.gameObject);
+    public void OnHit(ShootControll bullet, Destroy_score dest) {
+        //Destroy(bullet.gameObject);
 
         if (SpawnAfterKill != null){
+
+            //MeteorControll i = Spawn(ObjectRemove, RotationSpeed, Speed, GetComponent<Destroy_score>().Controller = Controller);
+            //i.transofr.position = this.transform.position;
             MeteorControll meteor1 = Instantiate(SpawnAfterKill);
             meteor1.transform.position = this.transform.position;
             meteor1.RotationSpeed = RotationSpeed;
@@ -44,11 +43,11 @@ public class MeteorControll : MonoBehaviour
             MeteorControll meteor2 = Instantiate(SpawnAfterKill);
             meteor2.transform.position = this.transform.position;
             meteor2.RotationSpeed = RotationSpeed;
-            meteor2.Speed = new Vector2(-Speed.x, Speed.y); // X koordináta negált
+            meteor2.Speed = new Vector2(-Speed.x, Speed.y); // X koordináta negált 
 
         }
-
-        Destroy(this.gameObject); // az eredeti meteor megsemmisítése
+        dest.ObjectRemove(bullet);
+        //Destroy(this.gameObject); // az eredeti meteor megsemmisítése
     }
 
     private void RotMeteor(){

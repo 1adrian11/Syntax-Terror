@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8662887226259589967}
   - component: {fileID: -3840654986877631971}
   - component: {fileID: -1011791452014936405}
+  - component: {fileID: -3465289420958478332}
   m_Layer: 0
   m_Name: grey_met_med
   m_TagString: Untagged
@@ -209,3 +210,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155ff885ac9c64a489c6b5f8f599b234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3465289420958478332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051210143655885699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad37b091c3281146aec76d516196275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Controller>k__BackingField: {fileID: 0}
+  <Score>k__BackingField: 25
+  <Triggered>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1998171690061186110}
+        m_TargetAssemblyTypeName: MeteorControll, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

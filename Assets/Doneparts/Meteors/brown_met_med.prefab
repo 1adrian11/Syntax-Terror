@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7544108189732723926}
   - component: {fileID: 6360609274468996298}
   - component: {fileID: -6169682422224451381}
+  - component: {fileID: -5702894217740154933}
   m_Layer: 0
   m_Name: brown_met_med
   m_TagString: Untagged
@@ -209,3 +210,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155ff885ac9c64a489c6b5f8f599b234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5702894217740154933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272564581311116945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad37b091c3281146aec76d516196275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Controller>k__BackingField: {fileID: 0}
+  <Score>k__BackingField: 25
+  <Triggered>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2693070496991703908}
+        m_TargetAssemblyTypeName: MeteorControll, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

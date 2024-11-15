@@ -37,6 +37,9 @@ public class MeteorSpawner : MonoBehaviour
     [field: SerializeField]
     public MeteorControll Template4 {get; private set;}
 
+    [field: SerializeField]
+    public ShipSpawner Controll {get; private set;}
+
     private List<MeteorControll> templates; // List to hold templates
 
     void Start()
@@ -63,7 +66,7 @@ public class MeteorSpawner : MonoBehaviour
         float RotationSpeed = Random.Range(minrot, maxrot);
 
         Vector2 Speed = new (Random.Range(minspeed.x, maxspeed.x), Random.Range(minspeed.y, maxspeed.y));  // Milyen gyorsan jöjjenek 
-        MeteorControll mc = MeteorControll.Spawn(selectedTemplate, RotationSpeed, Speed);
+        MeteorControll mc = MeteorControll.Spawn(selectedTemplate, RotationSpeed, Speed, Controll);
 
         Vector2 spawnpoint = new Vector2(Random.Range(minspawnpoint.position.x, maxspawnpoint.position.x), minspawnpoint.position.y);
         mc.transform.position = spawnpoint;

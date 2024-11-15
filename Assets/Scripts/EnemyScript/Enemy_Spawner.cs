@@ -6,7 +6,7 @@ public class Enemy_Spawner : MonoBehaviour
 {
 
     [field: SerializeField]
-    public float SpawnNumber {get; private set;}
+    public float SpawnSpeed {get; private set;}
     [field: SerializeField]
     public float Last {get; private set;} = 0;
     [field: SerializeField]
@@ -15,7 +15,7 @@ public class Enemy_Spawner : MonoBehaviour
 
     void Start()
     {
-        this.InvokeRepeating(nameof(NextSpawn), SpawnNumber, SpawnNumber);
+        this.InvokeRepeating(nameof(NextSpawn), SpawnSpeed, SpawnSpeed);
     }
 
     private void NextSpawn(){
