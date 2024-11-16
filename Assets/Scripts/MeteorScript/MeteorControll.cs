@@ -15,7 +15,14 @@ public class MeteorControll : MonoBehaviour
     //private ShipSpawner Cont;
     public MeteorControll SpawnAfterKill {get; private set;}
 
-    public static MeteorControll Spawn(MeteorControll i, float RotSpeed, Vector2 speed1, ShipSpawner Controller){
+    /*public static MeteorControll Spawn(MeteorControll i, float RotSpeed, Vector2 speed1, ShipSpawner Controller){
+        MeteorControll meteor = Instantiate(i);
+        meteor.GetComponent<Destroy_score>().Controller = Controller;
+        meteor.RotationSpeed = RotSpeed;
+        meteor.Speed = speed1;
+        return meteor;
+    }*/
+    public static MeteorControll Spawn(MeteorControll i, float RotSpeed, Vector2 speed1, ShipSpawner Controller) {
         MeteorControll meteor = Instantiate(i);
         meteor.GetComponent<Destroy_score>().Controller = Controller;
         meteor.RotationSpeed = RotSpeed;
@@ -28,7 +35,7 @@ public class MeteorControll : MonoBehaviour
         MovMeteor();
     }
 
-    public void OnHit(ShootControll bullet, Destroy_score dest) {
+    /*public void OnHit(ShootControll bullet, Destroy_score dest) { // UJ METEOROK PONTSZÁMÁT NEM SZÁMOLJA
         //Destroy(bullet.gameObject);
 
         if (SpawnAfterKill != null){
@@ -48,6 +55,22 @@ public class MeteorControll : MonoBehaviour
         }
         dest.ObjectRemove(bullet);
         //Destroy(this.gameObject); // az eredeti meteor megsemmisítése
+    }*/
+    public void OnHit(ShootControll bullet, Destroy_score dest) {
+        //Destroy(bullet.gameObject);
+
+        if (SpawnAfterKill != null){
+            // Az új meteorokat a Spawn metódussal hozzuk létre
+            MeteorControll meteor1 = MeteorControll.Spawn(SpawnAfterKill, RotationSpeed, Speed, dest.Controller);
+            meteor1.transform.position = this.transform.position;
+            
+            // ugyanaz negált iránnyal
+            MeteorControll meteor2 = MeteorControll.Spawn(SpawnAfterKill, RotationSpeed, new Vector2(-Speed.x, Speed.y), dest.Controller);
+            meteor2.transform.position = this.transform.position;
+        }
+
+        // Eredeti meteor eltávolítása és pontszám frissítése
+        dest.ObjectRemove(bullet);
     }
 
     private void RotMeteor(){

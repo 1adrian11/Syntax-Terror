@@ -5,6 +5,17 @@ using TMPro;
 
 public class ShipSpawner : MonoBehaviour
 {
+
+    private int HPLeft = 3;
+
+    public int BasicHPLeft {
+        get => HPLeft; 
+        private set {
+            HPLeft = value;
+            HpChange.Invoke(HPLeft);
+        }
+    }
+
     [field: SerializeField]
     public Player_Movement Player {get; private set;}  //hajo pusztulasakor amit spawnol
     /*
@@ -12,6 +23,7 @@ public class ShipSpawner : MonoBehaviour
     public List<Player_Movement> PlayerShips {get; private set;} = new ();
     hogy több ship közül lehessen választani
     */
+    [SerializeField] private Canvas GameOverCanvas; // A megjelenítendő Canvas
 
     [field: SerializeField]
     public Enemy_Spawner EnemySpawner {get; private set;}
@@ -51,10 +63,12 @@ public class ShipSpawner : MonoBehaviour
 
     private static int Pontok = 0;
     //public UnityEngine.Events.UnityEvent<int> scorechanger;
+    public UnityEngine.Events.UnityEvent<int> HpChange;
     public /*static*/ UnityEngine.Events.UnityEvent<int> scorechanger = new UnityEngine.Events.UnityEvent<int>();
 
     void Start()
     {
+        GameOverCanvas.gameObject.SetActive(false);
         Spawnplayer();
         List<Transform> borders = new() {Borders[0],Borders[1],Borders[2]};
 
@@ -80,11 +94,18 @@ public class ShipSpawner : MonoBehaviour
     public void DestroyMark (Player_Movement NeedDestroy){
         Destroy(NeedDestroy.gameObject);
         WhenSpawn = Time.time + PlayerSpawnDelay; // az eltelt időtől számolva hány másodpercel később spawnol
+        BasicHPLeft --;
     }
 
     private void Spawnplayer (){
-        Player_Movement pl = Player_Movement.Spawn(Player, this);
-        pl.transform.position = Spawnpoint.position;
-        WhenSpawn = -1;  // ne spawnoljon állandóan 
+        if(BasicHPLeft > 0){
+            Player_Movement pl = Player_Movement.Spawn(Player, this);
+            pl.transform.position = Spawnpoint.position;
+            WhenSpawn = -1;  // ne spawnoljon állandóan 
+        }
+        else
+        {
+            GameOverCanvas.gameObject.SetActive(true);
+        }
     }
 }
