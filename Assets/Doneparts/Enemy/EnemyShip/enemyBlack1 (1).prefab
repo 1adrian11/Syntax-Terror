@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -908618951614467072}
   - component: {fileID: 5464402664747047766}
   - component: {fileID: 5458869442136829974}
+  - component: {fileID: -5304542857129549438}
   m_Layer: 0
   m_Name: enemyBlack1 (1)
   m_TagString: Untagged
@@ -222,6 +223,35 @@ PolygonCollider2D:
       - {x: -0.15425688, y: -0.12555593}
       - {x: -0.119936034, y: -0.17193428}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5304542857129549438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885895707493156209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad37b091c3281146aec76d516196275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Controller>k__BackingField: {fileID: 0}
+  <Score>k__BackingField: 100
+  <Triggered>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5304542857129549438}
+        m_TargetAssemblyTypeName: Destroy_score, Assembly-CSharp
+        m_MethodName: ObjectRemove
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: ShootControll, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3842635596329012704
 GameObject:
   m_ObjectHideFlags: 0

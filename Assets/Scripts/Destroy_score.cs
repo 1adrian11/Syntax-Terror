@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using System;
 using System.Runtime.InteropServices;
 
+[RequireComponent(typeof(Collider2D))]
 /*[System.Serializable]
 public class Destroyer : UnityEvent<ShootControll>{}*/
 public class Destroy_score : MonoBehaviour

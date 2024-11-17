@@ -11,6 +11,8 @@ public class Enemy_Spawner : MonoBehaviour
     public float Last {get; private set;} = 0;
     [field: SerializeField]
     public List<Enemy_Interface> Enemies {get; private set;} = new ();
+    [field: SerializeField]
+    public ShipSpawner Controll {get;  set;}
 
 
     void Start()
@@ -22,7 +24,7 @@ public class Enemy_Spawner : MonoBehaviour
         if(Enemies.Count > 0) {
             Enemy_Interface ship = Enemies[0];
             Enemies.RemoveAt(0);      
-            Enemy_Movement_1.SpawnEnemy(ship);
+            Enemy_Movement_1.SpawnEnemy(ship, Controll);
         }
     }
 

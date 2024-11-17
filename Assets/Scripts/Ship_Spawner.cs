@@ -53,7 +53,7 @@ public class ShipSpawner : MonoBehaviour
     public float WhenSpawn {get; private set;} = -1;
 
     //[field: SerializeField] //static, mert Destroy_score nem éri el anélkül
-    public /*static*/ int Points {
+    public int Points {
         get => Pontok;
         private set{
             Pontok = value;
