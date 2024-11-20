@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class Player_Movement : MonoBehaviour
 {
+    /*[field: SerializeField]
+    private GameObject ShieldOBJ;*/
     [field: SerializeField]
     public float speed {get; private set;}
+    [field: SerializeField]
+    public UnityEvent <Player_Movement> IfChange {get; private set;}
     [field: SerializeField]
     public float BoostDuration {get; private set;}  //mennyi ideig legyen immunis pawn utan
     [field: SerializeField]
@@ -29,6 +35,23 @@ public class Player_Movement : MonoBehaviour
     public GameObject BulletType {get; private set;}
     [field: SerializeField]
     public ShipSpawner PlayerSpawner {get; private set;}
+    [field: SerializeField]
+    public float DmgBoost {get; private set;}
+    public bool HasDmgBoost => DmgBoost > 0;
+    public bool Visible => !HasDmgBoost || Mathf.Sin(Time.time*10) > 0;
+    [field: SerializeField]
+    private int shieldcount = 0;
+    public int Shieldpow {
+        get => shieldcount;
+        set{
+            shieldcount = Mathf.Min(value, 3); //max 3 shield lehet
+            IfChange.Invoke(this);
+        }
+    }
+
+    void Start(){
+        IfChange.Invoke(this);
+    }
 
     public static Player_Movement Spawn(Player_Movement pm, ShipSpawner i){
         Player_Movement pl = Instantiate(pm);
@@ -116,8 +139,13 @@ public class Player_Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) { //player kaput
         DamageToPlayer damage = other.GetComponent<DamageToPlayer>();
         if(damage != null && BoostDuration <= 0) {  //boostnal ne destroyoljon (spawn utan x masodpercig)
-            PlayerSpawner.DestroyMark(this);
-
+            damage.Hit(this);  //szedje ki a hitelő objectet
+            if (Shieldpow <= 0){ //ha nincs shield destroy
+                PlayerSpawner.DestroyMark(this);  
+            }
+            else{ //ha van shield vegye el / vonjon le belőle
+            Shieldpow--;
+            }
         }
     }
 

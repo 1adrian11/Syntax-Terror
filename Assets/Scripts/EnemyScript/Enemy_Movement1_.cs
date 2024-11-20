@@ -47,9 +47,9 @@ public class Enemy_Movement_1 : MonoBehaviour
     [field: SerializeField]
     public Transform BulletSpawn {get; private set;}
 
-    public static Enemy_Movement_1 SpawnEnemy(Enemy_Interface ship, ShipSpawner Controll){
+    public static Enemy_Movement_1 SpawnEnemy(Enemy_Interface ship, ShipSpawner Controller){
         Enemy_Movement_1 NextEnemy = Instantiate(ship.Prefab);
-        //NextEnemy.GetComponent<Destroy_score>().Controller = Controll;
+        NextEnemy.GetComponent<Destroy_score>().Controller = Controller;
         NextEnemy.MovementBorder = ship.Borders;
         NextEnemy.transform.position = ship.SpawnPoint;
         /*NextEnemy.MovementBorder = ship.Borders;

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5464402664747047766}
   - component: {fileID: 5458869442136829974}
   - component: {fileID: -5304542857129549438}
+  - component: {fileID: 8075914006120735214}
   m_Layer: 0
   m_Name: enemyBlack1 (1)
   m_TagString: Untagged
@@ -236,22 +237,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Controller>k__BackingField: {fileID: 0}
-  <Score>k__BackingField: 100
+  <Score>k__BackingField: 111
   <Triggered>k__BackingField:
     m_PersistentCalls:
+      m_Calls: []
+  <Destroyed>k__BackingField:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -5304542857129549438}
-        m_TargetAssemblyTypeName: Destroy_score, Assembly-CSharp
-        m_MethodName: ObjectRemove
-        m_Mode: 2
+      - m_Target: {fileID: 8075914006120735214}
+        m_TargetAssemblyTypeName: Dropfrequency, Assembly-CSharp
+        m_MethodName: Drop
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: ShootControll, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8075914006120735214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885895707493156209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5dfd8d031c4d514ba8c9dc690bede2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Boosters>k__BackingField:
+  - {fileID: 8402304698131061588, guid: 620c56d35e7209e4d9867f23708be0fc, type: 3}
+  <DropChanse>k__BackingField: 1
 --- !u!1 &3842635596329012704
 GameObject:
   m_ObjectHideFlags: 0
