@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 5412652806186559352}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -157,7 +157,7 @@ MonoBehaviour:
   <MainWeapon3>k__BackingField: {fileID: 0}
   <BulletType>k__BackingField: {fileID: 6476395200455973237, guid: f134d87d6229395449ddbc2756a8246e, type: 3}
   <PlayerSpawner>k__BackingField: {fileID: 0}
-  <DmgBoost>k__BackingField: 0
+  <DmgBoost>k__BackingField: 3
   shieldcount: 0
 --- !u!50 &1622003374200804317
 Rigidbody2D:

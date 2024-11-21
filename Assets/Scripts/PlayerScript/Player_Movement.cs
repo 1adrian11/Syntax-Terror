@@ -53,11 +53,17 @@ public class Player_Movement : MonoBehaviour
         IfChange.Invoke(this);
     }
 
+    /*public static Player_Movement Spawn(Player_Movement pm, ShipSpawner i){
+        Player_Movement pl = Instantiate(pm);
+        pl.PlayerSpawner = i;
+        return pl;
+    }*/
     public static Player_Movement Spawn(Player_Movement pm, ShipSpawner i){
         Player_Movement pl = Instantiate(pm);
         pl.PlayerSpawner = i;
         return pl;
     }
+
     void Update(){
         Movement();
         Fire();

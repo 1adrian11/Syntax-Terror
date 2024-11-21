@@ -5,7 +5,8 @@ using TMPro;
 
 public class ShipSpawner : MonoBehaviour
 {
-
+    [SerializeField] private List<GameObject> playerPrefabs;
+    public string ShipNumber = ButtonHighlighter.Instance.GetSelectedButtonName();
     private int HPLeft = 3;
 
     public int BasicHPLeft {
@@ -70,6 +71,7 @@ public class ShipSpawner : MonoBehaviour
     {
         GameOverCanvas.gameObject.SetActive(false);
         Spawnplayer();
+        //UpdatePlayer();
         List<Transform> borders = new() {Borders[0],Borders[1],Borders[2]};
 
         Enemy_Interface ship = new E_ship(PossibleEnemies[0], borders, E_SpawnPoint1.position);
@@ -108,4 +110,49 @@ public class ShipSpawner : MonoBehaviour
             GameOverCanvas.gameObject.SetActive(true);
         }
     }
+    /*void UpdatePlayer()
+    {
+        switch (ShipNumber)
+        {
+            case "1":
+                Player = Instantiate(playerPrefabs[0]).GetComponent<Player_Movement>();
+                break;
+            case "2":
+                Player = Instantiate(playerPrefabs[1]).GetComponent<Player_Movement>();
+                break;
+            case "3":
+                Player = Instantiate(playerPrefabs[2]).GetComponent<Player_Movement>();
+                break;
+            case "4":
+                Player = Instantiate(playerPrefabs[3]).GetComponent<Player_Movement>();
+                break;
+            case "5":
+                Player = Instantiate(playerPrefabs[4]).GetComponent<Player_Movement>();
+                break;
+            case "6":
+                Player = Instantiate(playerPrefabs[5]).GetComponent<Player_Movement>();
+                break;
+            case "7":
+                Player = Instantiate(playerPrefabs[6]).GetComponent<Player_Movement>();
+                break;
+            case "8":
+                Player = Instantiate(playerPrefabs[7]).GetComponent<Player_Movement>();
+                break;
+            case "9":
+                Player = Instantiate(playerPrefabs[8]).GetComponent<Player_Movement>();
+                break;
+            case "10":
+                Player = Instantiate(playerPrefabs[9]).GetComponent<Player_Movement>();
+                break;
+            case "11":
+                Player = Instantiate(playerPrefabs[10]).GetComponent<Player_Movement>();
+                break;
+            case "12":
+                Player = Instantiate(playerPrefabs[11]).GetComponent<Player_Movement>();
+                break;
+            default:
+                Debug.LogError("Invalid ship number selected!");
+                break;
+        }
+    }*/
 }

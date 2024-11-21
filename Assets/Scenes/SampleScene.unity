@@ -1695,7 +1695,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceec5d68128c49e47b47e5bd149ec5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 5011839704214372184, guid: 941a1d3df93d6054eac5a2e375dd92e9, type: 3}
+  playerPrefabs:
+  - {fileID: 8690745204651088880, guid: dd001c3717212994d9112799c5560d6d, type: 3}
+  - {fileID: 9046070948585869305, guid: 08d0f6b155dc4494fb810eecfa59bb67, type: 3}
+  - {fileID: 489892113604857212, guid: 4f01ec1ae02a87840a7a9cd81b8dee5e, type: 3}
+  - {fileID: 1600289944025235416, guid: d4b1f49ac2f086d40bd3fbb3340fb3db, type: 3}
+  - {fileID: 5412652806186559352, guid: 72c79ca2356fd2a4182b84ad25042430, type: 3}
+  - {fileID: 5987233978182931039, guid: 45b72c547758f3f4096214cbcc1433b4, type: 3}
+  - {fileID: 2029889185198743790, guid: 7226187e89fd73d4599240c43746a63a, type: 3}
+  - {fileID: 1552846879222377062, guid: e77884baaf7a67243999abce3918aa9c, type: 3}
+  - {fileID: 4790302905321616694, guid: 627f3df0d62878e44a3229a9efc85aec, type: 3}
+  - {fileID: 8335763449837919215, guid: 941a1d3df93d6054eac5a2e375dd92e9, type: 3}
+  - {fileID: 3139226625403966002, guid: 363f3f19fe507bc4ca34e0c5d826fbfc, type: 3}
+  - {fileID: 778154027384737154, guid: f008ac2dda95e204aaac9353725ac05b, type: 3}
+  ShipNumber: 1
+  <Player>k__BackingField: {fileID: 9185736002480521219, guid: dd001c3717212994d9112799c5560d6d, type: 3}
   GameOverCanvas: {fileID: 410468965}
   <EnemySpawner>k__BackingField: {fileID: 2024583371}
   <E_SpawnPoint1>k__BackingField: {fileID: 1551294148}
