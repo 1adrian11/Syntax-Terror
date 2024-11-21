@@ -7,7 +7,7 @@ using UnityEngine.Animations;
 public class MeteorSpawner : MonoBehaviour
 {
     [field: SerializeField]
-    public float spawnrate {get; private set;}  // milyen gyorsan spawnol
+    public float spawnrate {get; set;}  // milyen gyorsan spawnol
     [field: SerializeField]
     public float lastspawn {get; private set;}
     [field: SerializeField]

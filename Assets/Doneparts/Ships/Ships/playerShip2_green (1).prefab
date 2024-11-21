@@ -247,7 +247,7 @@ MonoBehaviour:
   <MainWeapon>k__BackingField: {fileID: 7050628246997986117}
   <MainWeapon2>k__BackingField: {fileID: 0}
   <MainWeapon3>k__BackingField: {fileID: 0}
-  <BulletType>k__BackingField: {fileID: 6476395200455973237, guid: f134d87d6229395449ddbc2756a8246e, type: 3}
+  <BulletType>k__BackingField: {fileID: 2790644133002816224, guid: aacf67ca09c55354a9c27466b2065834, type: 3}
   <PlayerSpawner>k__BackingField: {fileID: 0}
   <DmgBoost>k__BackingField: 0
   shieldcount: 0
