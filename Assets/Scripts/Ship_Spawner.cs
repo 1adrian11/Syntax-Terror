@@ -91,6 +91,7 @@ public class ShipSpawner : MonoBehaviour
 
     public /*static*/ void ScoreManager (int allscore){  //static, mert Destroy_score nem éri el anélkül
         Points += allscore; //adja mindig hozzá a megszerzett pontot
+        scorechanger.Invoke(Points); // Frissítés a UI-on, ha van
     }
 
     public void DestroyMark (Player_Movement NeedDestroy){
@@ -108,6 +109,7 @@ public class ShipSpawner : MonoBehaviour
         else
         {
             GameOverCanvas.gameObject.SetActive(true);
+            HighScoreManager.SaveScore(Points); // Pontszám mentése
         }
     }
     /*void UpdatePlayer()
