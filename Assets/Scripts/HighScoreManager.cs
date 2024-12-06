@@ -27,7 +27,7 @@ public class HighScoreManager : MonoBehaviour
 
             
             OnNewHighScore.Invoke(score);
-
+            
         }
     }
 }

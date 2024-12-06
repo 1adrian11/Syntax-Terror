@@ -6,155 +6,155 @@ using TMPro;
 public class ShipSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> playerPrefabs;
-    public string ShipNumber = ButtonHighlighter.Instance.GetSelectedButtonName();
     private int HPLeft = 3;
 
-    public int BasicHPLeft {
-        get => HPLeft; 
-        private set {
+    public int BasicHPLeft
+    {
+        get => HPLeft;
+        private set
+        {
             HPLeft = value;
             HpChange.Invoke(HPLeft);
         }
     }
 
     [field: SerializeField]
-    public Player_Movement Player {get; private set;}  //hajo pusztulasakor amit spawnol
-    /*
-    ehelyett mehet     
-    public List<Player_Movement> PlayerShips {get; private set;} = new ();
-    hogy több ship közül lehessen választani
-    */
-    [SerializeField] private Canvas GameOverCanvas; // A megjelenítendő Canvas
+    public Player_Movement Player { get; private set; }
+
+    [SerializeField] private Canvas GameOverCanvas;
 
     [field: SerializeField]
-    public Enemy_Spawner EnemySpawner {get; private set;}
+    public Enemy_Spawner EnemySpawner { get; private set; }
 
     [field: SerializeField]
-    public Transform E_SpawnPoint1 {get; private set;}
+    public Transform E_SpawnPoint1 { get; private set; }
 
     [field: SerializeField]
-    public Transform E_SpawnPoint2 {get; private set;}
+    public Transform E_SpawnPoint2 { get; private set; }
 
     [field: SerializeField]
-    public Transform E_SpawnPoint3 {get; private set;}
+    public Transform E_SpawnPoint3 { get; private set; }
 
     [field: SerializeField]
-    public List<Transform> Borders {get; private set;}
+    public List<Transform> Borders { get; private set; }
 
     [field: SerializeField]
-    public List<Enemy_Movement_1> PossibleEnemies {get; private set;}
+    public List<Enemy_Movement_1> PossibleEnemies { get; private set; }
 
     [field: SerializeField]
-    public Transform Spawnpoint {get; private set;}
+    public Transform Spawnpoint { get; private set; }
 
     [field: SerializeField]
-    public float PlayerSpawnDelay {get; private set;}   //mennyi ido a respawnhoz
+    public float PlayerSpawnDelay { get; private set; }
 
     [field: SerializeField]
-    public float WhenSpawn {get; private set;} = -1;
+    public float WhenSpawn { get; private set; } = -1;
 
-    //[field: SerializeField] //static, mert Destroy_score nem éri el anélkül
-    public int Points {
+    [field: SerializeField]
+    public float EnemySpawnInterval { get; private set; } = 5f; // időköz az ellenségek között
+
+    public int Points
+    {
         get => Pontok;
-        private set{
+        private set
+        {
             Pontok = value;
             scorechanger.Invoke(Pontok);
         }
-    } //highscore számláló
+    }
 
     private static int Pontok = 0;
-    //public UnityEngine.Events.UnityEvent<int> scorechanger;
     public UnityEngine.Events.UnityEvent<int> HpChange;
-    public /*static*/ UnityEngine.Events.UnityEvent<int> scorechanger = new UnityEngine.Events.UnityEvent<int>();
+    public UnityEngine.Events.UnityEvent<int> scorechanger = new UnityEngine.Events.UnityEvent<int>();
+
+    private Coroutine enemySpawnCoroutine;
 
     void Start()
     {
         GameOverCanvas.gameObject.SetActive(false);
         Spawnplayer();
-        //UpdatePlayer();
-        List<Transform> borders = new() {Borders[0],Borders[1],Borders[2]};
+        StartEnemySpawning();
 
+        List<Transform> borders = new() { Borders[0], Borders[1], Borders[2], Borders[3], Borders[4], Borders[5]};
         Enemy_Interface ship = new E_ship(PossibleEnemies[0], borders, E_SpawnPoint1.position);
+        List<Enemy_Interface> enemies = new() { ship, ship, ship };
 
-        List<Enemy_Interface> enemies = new () {ship, ship, ship};
-
-        EnemySpawner.NextEnemyInRow(enemies);
+        EnemySpawner.NextEnemyInRow(enemies); // Az eredeti hármas generálás megtartása
     }
 
     void Update()
     {
-        if(WhenSpawn > 0 && Time.time > WhenSpawn) {
+        if (WhenSpawn > 0 && Time.time > WhenSpawn)
+        {
             Spawnplayer();
         }
         Pontok = Points;
     }
 
-    public /*static*/ void ScoreManager (int allscore){  //static, mert Destroy_score nem éri el anélkül
-        Points += allscore; //adja mindig hozzá a megszerzett pontot
-        scorechanger.Invoke(Points); // Frissítés a UI-on, ha van
+    public void ScoreManager(int allscore)
+    {
+        Points += allscore;
+        scorechanger.Invoke(Points);
     }
 
-    public void DestroyMark (Player_Movement NeedDestroy){
+    public void DestroyMark(Player_Movement NeedDestroy)
+    {
         Destroy(NeedDestroy.gameObject);
-        WhenSpawn = Time.time + PlayerSpawnDelay; // az eltelt időtől számolva hány másodpercel később spawnol
-        BasicHPLeft --;
+        WhenSpawn = Time.time + PlayerSpawnDelay;
+        BasicHPLeft--;
     }
 
-    private void Spawnplayer (){
-        if(BasicHPLeft > 0){
+    private void Spawnplayer()
+    {
+        if (BasicHPLeft > 0)
+        {
             Player_Movement pl = Player_Movement.Spawn(Player, this);
             pl.transform.position = Spawnpoint.position;
-            WhenSpawn = -1;  // ne spawnoljon állandóan 
+            WhenSpawn = -1;
         }
         else
         {
             GameOverCanvas.gameObject.SetActive(true);
-            HighScoreManager.SaveScore(Points); // Pontszám mentése
+            HighScoreManager.SaveScore(Points);
+            StopEnemySpawning();
         }
     }
-    /*void UpdatePlayer()
+
+    private void StartEnemySpawning()
     {
-        switch (ShipNumber)
+        enemySpawnCoroutine = StartCoroutine(SpawnEnemies());
+    }
+
+    private void StopEnemySpawning()
+    {
+        if (enemySpawnCoroutine != null)
         {
-            case "1":
-                Player = Instantiate(playerPrefabs[0]).GetComponent<Player_Movement>();
-                break;
-            case "2":
-                Player = Instantiate(playerPrefabs[1]).GetComponent<Player_Movement>();
-                break;
-            case "3":
-                Player = Instantiate(playerPrefabs[2]).GetComponent<Player_Movement>();
-                break;
-            case "4":
-                Player = Instantiate(playerPrefabs[3]).GetComponent<Player_Movement>();
-                break;
-            case "5":
-                Player = Instantiate(playerPrefabs[4]).GetComponent<Player_Movement>();
-                break;
-            case "6":
-                Player = Instantiate(playerPrefabs[5]).GetComponent<Player_Movement>();
-                break;
-            case "7":
-                Player = Instantiate(playerPrefabs[6]).GetComponent<Player_Movement>();
-                break;
-            case "8":
-                Player = Instantiate(playerPrefabs[7]).GetComponent<Player_Movement>();
-                break;
-            case "9":
-                Player = Instantiate(playerPrefabs[8]).GetComponent<Player_Movement>();
-                break;
-            case "10":
-                Player = Instantiate(playerPrefabs[9]).GetComponent<Player_Movement>();
-                break;
-            case "11":
-                Player = Instantiate(playerPrefabs[10]).GetComponent<Player_Movement>();
-                break;
-            case "12":
-                Player = Instantiate(playerPrefabs[11]).GetComponent<Player_Movement>();
-                break;
-            default:
-                Debug.LogError("Invalid ship number selected!");
-                break;
+            StopCoroutine(enemySpawnCoroutine);
         }
-    }*/
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        while (true)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(EnemySpawnInterval);
+        }
+    }
+
+    private void SpawnEnemy()
+    {
+        // Random válasszon egy ellenséget és egy spawn pontot
+        Enemy_Movement_1 enemy = PossibleEnemies[Random.Range(0, PossibleEnemies.Count)];
+        Transform spawnPoint = GetRandomSpawnPoint();
+
+        Enemy_Interface newEnemy = new E_ship(enemy, Borders, spawnPoint.position);
+        EnemySpawner.NextEnemyInRow(new List<Enemy_Interface> { newEnemy });
+    }
+
+    private Transform GetRandomSpawnPoint()
+    {
+        Transform[] spawnPoints = { E_SpawnPoint1, E_SpawnPoint2, E_SpawnPoint3 };
+        return spawnPoints[Random.Range(0, spawnPoints.Length)];
+    }
 }

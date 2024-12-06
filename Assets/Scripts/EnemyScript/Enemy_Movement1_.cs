@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 [RequireComponent(typeof(Destroy_score))]
@@ -19,13 +17,6 @@ public class Enemy_Movement_1 : MonoBehaviour
         }
     }
 
-    // FOLYAMATOSAN LASSULO MOVEMENT:
-    /*public Vector2 Velocity {
-        get {
-            Vector2 ship = MovementBorder[BetweenBorders].position;
-            return ship - (Vector2)this.transform.position;
-        }
-    }*/
     [field: SerializeField]
     public float ShootFrequency {get; private set;} //hány másodpercenként lő
 
@@ -47,19 +38,24 @@ public class Enemy_Movement_1 : MonoBehaviour
     [field: SerializeField]
     public Transform BulletSpawn {get; private set;}
 
+    private bool isWaiting = false; // Állapot a várakozáshoz
+    private float waitTimer = 0f; // Időzítő a várakozáshoz
+    private float waitDuration = 0f; // Várakozási idő
+
     public static Enemy_Movement_1 SpawnEnemy(Enemy_Interface ship, ShipSpawner Controller){
         Enemy_Movement_1 NextEnemy = Instantiate(ship.Prefab);
         NextEnemy.GetComponent<Destroy_score>().Controller = Controller;
         NextEnemy.MovementBorder = ship.Borders;
         NextEnemy.transform.position = ship.SpawnPoint;
-        /*NextEnemy.MovementBorder = ship.Borders;
-        NextEnemy.transform.position = ship.SpawnPoint;*/
+        
+        // Véletlenszerű border választás
+        NextEnemy.BetweenBorders = Random.Range(0, ship.Borders.Count); // Véletlen border választása
         return NextEnemy;
     }
 
-
     void Start(){
         IfFire = Time.time;
+        SetRandomWaitTime(); // Állítsuk be az első várakozási időt
     }
 
     void Update(){
@@ -69,19 +65,41 @@ public class Enemy_Movement_1 : MonoBehaviour
     }
 
     private void BorderAssist(){
-        Vector2 enemy = MovementBorder[BetweenBorders].position;  //hova probal menni
+        Vector2 enemy = MovementBorder[BetweenBorders].position;  //hova próbál menni
         float tav = Vector2.Distance(enemy,transform.position);
-        //ha ott van menjen a masikhoz
-        if(tav < 0.5) {
-            BetweenBorders = (BetweenBorders + 1) % MovementBorder.Count; //0 es 1 között (2 pont) megy folyamatosan
+        
+        if (tav < 0.5f && !isWaiting) {
+            // Ha elérte a border-t, és nem az első border
+            if (BetweenBorders > 0) {
+                isWaiting = true;
+                waitTimer = Time.time; // Kezdjük a várakozást
+                SetRandomWaitTime(); // Állítsuk be a következő várakozási időt
+            } else {
+                // Ha az első bordernél van, folytassa a mozgást
+                BetweenBorders = (BetweenBorders + 1) % MovementBorder.Count;
+            }
         }
+
+        // Ha várakozik, ellenőrizzük, hogy letelt-e a várakozási idő
+        if (isWaiting && Time.time >= waitTimer + waitDuration) {
+            // Várakozás után haladjon a következő borderhez
+            BetweenBorders = Random.Range(0, MovementBorder.Count); // Véletlenszerű border választás
+            isWaiting = false; // Leállítjuk a várakozást
+        }
+    }
+
+    private void SetRandomWaitTime(){
+        // Véletlenszerű várakozási idő 2 és 5 másodperc között
+        waitDuration = Random.Range(2f, 5f);
     }
 
     private void Move(){
         // Mozgatás
-        float new_x = transform.position.x + (Velocity.x * Speed * Time.deltaTime);
-        float new_y = transform.position.y + (Velocity.y * Speed * Time.deltaTime);
-        transform.position = new Vector2(new_x, new_y);
+        if (!isWaiting) {
+            float new_x = transform.position.x + (Velocity.x * Speed * Time.deltaTime);
+            float new_y = transform.position.y + (Velocity.y * Speed * Time.deltaTime);
+            transform.position = new Vector2(new_x, new_y);
+        }
     }
 
     private void Fire(){
