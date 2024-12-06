@@ -8,6 +8,11 @@ public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    // void Start()
+    // {
+    //     HighScoreManager.ResetHighScore(); // Highscore nullázása ha visszatérünk a főmenübe
+    // }
+
     public void PlayGame(){
         SceneManager.LoadSceneAsync(2);
     }
