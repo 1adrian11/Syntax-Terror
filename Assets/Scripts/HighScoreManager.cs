@@ -7,7 +7,9 @@ using TMPro;
 
 public class HighScoreManager : MonoBehaviour
 {
+
     private const string HighScoreKey = "HighScore"; // A PlayerPrefs kulcsa
+
     public static UnityEvent<int> OnNewHighScore = new UnityEvent<int>();
 
     // Betölti az aktuális legmagasabb pontszámot
@@ -29,5 +31,13 @@ public class HighScoreManager : MonoBehaviour
             OnNewHighScore.Invoke(score);
             
         }
+
+    }
+
+     // Highscore nullázása
+    public static void ResetHighScore()
+    {
+        PlayerPrefs.SetInt(HighScoreKey, 0);
+        PlayerPrefs.Save();
     }
 }
