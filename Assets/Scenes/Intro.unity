@@ -793,35 +793,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 753370276}
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s,
-    when an unknown printer took a galley of type and scrambled it to make a type
-    specimen book. It has survived not only five centuries, but also the leap into
-    electronic typesetting, remaining essentially unchanged. It was popularised in
-    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-    and more recently with desktop publishing software like Aldus PageMaker including
-    versions of Lorem Ipsum.  Lorem Ipsum is simply dummy text of the printing and
-    typesetting industry. Lorem Ipsum has been the industry''s standard dummy text
-    ever since the 1500s, when an unknown printer took a galley of type and scrambled
-    it to make a type specimen book. It has survived not only five centuries, but
-    also the leap into electronic typesetting, remaining essentially unchanged. It
-    was popularised in the 1960s with the release of Letraset sheets containing Lorem
-    Ipsum passages, and more recently with desktop publishing software like Aldus
-    PageMaker including versions of Lorem Ipsum.  Lorem Ipsum is simply dummy text
-    of the printing and typesetting industry. Lorem Ipsum has been the industry''s
-    standard dummy text ever since the 1500s, when an unknown printer took a galley
-    of type and scrambled it to make a type specimen book. It has survived not only
-    five centuries, but also the leap into electronic typesetting, remaining essentially
-    unchanged. It was popularised in the 1960s with the release of Letraset sheets
-    containing Lorem Ipsum passages, and more recently with desktop publishing software
-    like Aldus PageMaker including versions of Lorem Ipsum.  Lorem Ipsum is simply
-    dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-    industry''s standard dummy text ever since the 1500s, when an unknown printer
-    took a galley of type and scrambled it to make a type specimen book. It has survived
-    not only five centuries, but also the leap into electronic typesetting, remaining
-    essentially unchanged. It was popularised in the 1960s with the release of Letraset
-    sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-    software like Aldus PageMaker including versions of Lorem Ipsum.  '
+  text: "A nevem Emma Smith. Egy ideje m\xE1r egy\xFCtt dolgozom egy nagy \u0171rkutat\xF3
+    c\xE9gn\xE9l b\xE1ty\xE1mmal, Arthurral. Jelenleg 2233-at \xEDrunk. A F\xF6ld\xFCnk\xF6n
+    jelenleg 20 milli\xE1rd ember \xE9l, ami tarhatatlan. R\xE1tal\xE1ltunk egy f\xE9reglyukra
+    ami kutat\xE1s szempontj\xE1b\xF3l fontos lehet, az emberis\xE9g sz\xE1m\xE1ra
+    hiszen tartalmazhat olyan bolyg\xF3kat amik tudj\xE1k biztos\xEDtani a j\xF6v\u0151
+    gener\xE1ci\xF3inak az \xE9letben marad\xE1s felt\xE9teleit. Arth\xFAr \xE9s
+    \xE9n v\xE1llaltuk a kock\xE1zatos utaz\xE1st. Az \xFAt egy\xE1ltal\xE1n nem
+    volt egy k\xF6nnyed kaland, meglehet\u0151sen sok meteort \xE9s kisebb \u0171rb\xE9li
+    k\u0151zetet kellett ki ker\xFClni. A f\xE9reglyukba bel\xE9pve olyan gyorsas\xE1got
+    tapasztaltunk amit m\xE9g ember nem l\xE1tott, de karcol\xE1s n\xE9lk\xFCl meg\xFAsztuk.
+    Egyszerre \xF6r\xFClt\xFCnk \xE9s elt\xF6lt\xF6tt az izgatotts\xE1g, azonban
+    belegondolva, hogy bel\xE9pt\xFCnk egy \xFAj vil\xE1gban, mindannyiunkban megfogalmaz\xF3dott
+    a k\xE9rd\xE9s:  Vajon mit rejt a galaxisnak ezen r\xE9sze, tett\xFCk fel mindannyian
+    egyszerre\u2026"
   typingSpeed: 0.1
 --- !u!4 &2099860566
 Transform:

@@ -25,8 +25,10 @@ public class Typing : MonoBehaviour
             textComponent.text += text[currentChar];
             currentChar++;
             timer = 0f;
-        } 
-
+        }
+        if(currentChar == text.Length){
+            SceneManager.LoadScene(1);
+        }
         if(Input.GetKeyDown(KeyCode.Space)){
             SceneManager.LoadScene(1);
         }
