@@ -19,7 +19,7 @@ public class ShipSpawner : MonoBehaviour
     }
 
     [field: SerializeField]
-    public Player_Movement Player { get; private set; }
+    public Player_Movement Player { get; set; }
 
     [SerializeField] private Canvas GameOverCanvas;
 
@@ -42,10 +42,10 @@ public class ShipSpawner : MonoBehaviour
     public List<Enemy_Movement_1> PossibleEnemies { get; private set; }
 
     [field: SerializeField]
-    public Transform Spawnpoint { get; private set; }
+    public Transform Spawnpoint { get; set; }
 
     [field: SerializeField]
-    public float PlayerSpawnDelay { get; private set; }
+    public float PlayerSpawnDelay { get; set; }
 
     [field: SerializeField]
     public float WhenSpawn { get; private set; } = -1;
@@ -104,7 +104,7 @@ public class ShipSpawner : MonoBehaviour
         BasicHPLeft--;
     }
 
-    private void Spawnplayer()
+    public void Spawnplayer()
     {
         if (BasicHPLeft > 0)
         {
