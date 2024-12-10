@@ -4,8 +4,8 @@ using TMPro;
 
 public class ShieldCountDisplay : MonoBehaviour
 {
-    [SerializeField] private Player_Movement player; // Hivatkozás a játékos scriptjére
-    [SerializeField] private TextMeshProUGUI shieldCountText;   // Hivatkozás a szöveg UI elemére
+    [SerializeField] public Player_Movement player; // Hivatkozás a játékos scriptjére
+    [SerializeField] public TextMeshProUGUI shieldCountText;   // Hivatkozás a szöveg UI elemére
 
     void Start()
     {

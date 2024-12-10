@@ -24,13 +24,13 @@ public class Enemy_Movement_1 : MonoBehaviour
     public float IfFire {get; private set;} = 0;
 
     [field: SerializeField]
-    public List<Transform> MovementBorder {get; private set;} //ami között mozoghat az enemy hajo
+    public List<Transform> MovementBorder {get; set;} //ami között mozoghat az enemy hajo
 
     [field: SerializeField]
-    public float Speed {get; private set;}
+    public float Speed {get; set;}
 
     [field: SerializeField]
-    public int BetweenBorders {get; private set;} = 0;
+    public int BetweenBorders {get; set;} = 0;
 
     [field: SerializeField]
     public GameObject Bullet {get; private set;}
@@ -88,7 +88,7 @@ public class Enemy_Movement_1 : MonoBehaviour
         }
     }
 
-    private void SetRandomWaitTime(){
+    public void SetRandomWaitTime(){
         // Véletlenszerű várakozási idő 2 és 5 másodperc között
         waitDuration = Random.Range(2f, 5f);
     }

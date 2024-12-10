@@ -13,25 +13,25 @@ using TMPro;
 public class Player_Movement : MonoBehaviour
 {
     [field: SerializeField]
-    public float speed { get; private set; }
+    public float speed { get; set; }
     [field: SerializeField]
     public UnityEvent<Player_Movement> IfChange { get; private set; }
     [field: SerializeField]
     public float BoostDuration { get; private set; }
     [field: SerializeField]
-    public Vector2 velocity { get; private set; } = new(0, 0);
+    public Vector2 velocity { get; set; } = new(0, 0);
     [field: SerializeField]
-    public Vector2 maxpos { get; private set; }
+    public Vector2 maxpos { get; set; }
     [field: SerializeField]
-    public Vector2 minpos { get; private set; }
+    public Vector2 minpos { get; set; }
     [field: SerializeField]
-    public Transform MainWeapon { get; private set; }
+    public Transform MainWeapon { get; set; }
     [field: SerializeField]
-    public Transform MainWeapon2 { get; private set; }
+    public Transform MainWeapon2 { get; set; }
     [field: SerializeField]
-    public Transform MainWeapon3 { get; private set; }
+    public Transform MainWeapon3 { get; set; }
     [field: SerializeField]
-    public GameObject BulletType { get; private set; }
+    public GameObject BulletType { get; set; }
     [field: SerializeField]
     public ShipSpawner PlayerSpawner { get; private set; }
     [field: SerializeField]
@@ -98,7 +98,7 @@ public class Player_Movement : MonoBehaviour
         Move();
     }
 
-    private void Fire()
+    public void Fire()
     {
         if (Input.GetButtonDown("Fire1"))
         {
@@ -123,23 +123,23 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    private void Movement()
+    public void Movement()
     {
         velocity = HorizontalPos(Input.GetAxis("Horizontal"));
         velocity += VerticalPos(Input.GetAxis("Vertical"));
     }
 
-    private Vector2 VerticalPos(float ver)
+    public Vector2 VerticalPos(float ver)
     {
         return new Vector2(0, Mathf.Clamp(ver, -1, 1));
     }
 
-    private Vector2 HorizontalPos(float hor)
+    public Vector2 HorizontalPos(float hor)
     {
         return new Vector2(Mathf.Clamp(hor, -1, 1), 0);
     }
 
-    private void Move()
+    public void Move()
     {
         float new_x = transform.position.x + (velocity.x * speed * Time.deltaTime);
         float new_y = transform.position.y + (velocity.y * speed * Time.deltaTime);
