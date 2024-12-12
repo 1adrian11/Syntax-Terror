@@ -177,6 +177,19 @@ public class Player_Movement : MonoBehaviour
                 Shieldpow--;
             }
         }
+        BossDammageToPlayer dmg = other.GetComponent<BossDammageToPlayer>();
+        if (dmg != null && BoostDuration <= 0)
+        {
+            dmg.Hit(this);
+            if (Shieldpow <= 0)
+            {
+                PlayerSpawner.DestroyMark(this);
+            }
+            else
+            {
+                Shieldpow--;
+            }
+        }
     }
 
     private void Boost()

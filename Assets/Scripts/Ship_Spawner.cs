@@ -51,7 +51,7 @@ public class ShipSpawner : MonoBehaviour
     public float WhenSpawn { get; private set; } = -1;
 
     [field: SerializeField]
-    public float EnemySpawnInterval { get; private set; } = 5f; // időköz az ellenségek között
+    public float EnemySpawnInterval { get; set; } /*= 5f;*/ // időköz az ellenségek között
 
     public int Points
     {

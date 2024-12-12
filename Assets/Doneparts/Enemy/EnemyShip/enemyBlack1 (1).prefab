@@ -109,7 +109,7 @@ MonoBehaviour:
   <MovementBorder>k__BackingField:
   - {fileID: 0}
   - {fileID: 0}
-  <Speed>k__BackingField: 4
+  <Speed>k__BackingField: 3
   <BetweenBorders>k__BackingField: 0
   <Bullet>k__BackingField: {fileID: 1719894509329616705, guid: 0c2f97294b42a7b49bd4864c59eb8684, type: 3}
   <BulletSpawn>k__BackingField: {fileID: 9012979796730878635}

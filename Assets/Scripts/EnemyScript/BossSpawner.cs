@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject objectToSpawn;
+    public Transform spawnPoint; 
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) // Ha a játékos megnyomja a Space billentyűt
+        {
+            SpawnObject();
+        }
     }
+
+    void SpawnObject()
+    {
+        // z pozi 0-ra kell!! valamiért elállítja vec2-n is
+        GameObject spawnedObject = Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+        Vector3 newPosition = spawnedObject.transform.position;
+        newPosition.z = 0;
+        spawnedObject.transform.position = newPosition;
+    }
+
 }

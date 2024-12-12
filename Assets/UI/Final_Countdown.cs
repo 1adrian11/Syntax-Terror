@@ -10,6 +10,8 @@ public class CountdownTimer : MonoBehaviour
     public TextMeshProUGUI messageText; 
     public GameObject conditionObject; // vége e a gamenek
 
+    public ShipSpawner EnemySpawnSet;
+
     public MeteorSpawner meteorSpawner;
     bool BossIsActive = false;
 
@@ -58,7 +60,8 @@ public class CountdownTimer : MonoBehaviour
         if (!hasModifiedSpawnRate)
         {
             hasModifiedSpawnRate = true; 
-            meteorSpawner.spawnrate = 1000; // ne legyen meteor boss intrón
+            meteorSpawner.spawnrate = 1000000; // ne legyen meteor boss intrón
+            EnemySpawnSet.EnemySpawnInterval = 1000000;
             StartCoroutine(ResetSpawnRateAfterSeconds(10f)); // utána legyen
             BossIsActive = true;
         }
