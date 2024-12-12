@@ -1,4 +1,7 @@
-Fordítás
+Futtatási céllal a játék letölthető a https://drive.google.com/file/d/1TVQhgSVnUmwb_dTtTKbcasvqlBYuojYx/view?usp=sharing címről.
+
+
+Játék megnyitása unityben:
 
 Töltsd le a játék forráskódját a GitHub repository-ból. Bizonyosodj meg róla, hogy telepítve van a szükséges fejlesztői környezet és a szükséges könyvtárak.
 
