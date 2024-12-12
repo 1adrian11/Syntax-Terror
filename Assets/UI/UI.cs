@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+//using System.Collections;
+//using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
-
+//using Microsoft.Unity.VisualStudio.Editor;
 
 [RequireComponent(typeof(ShipSpawner))]
 public class UI : MonoBehaviour

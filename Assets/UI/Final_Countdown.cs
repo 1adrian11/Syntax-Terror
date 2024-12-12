@@ -11,7 +11,6 @@ public class CountdownTimer : MonoBehaviour
     public GameObject conditionObject; // vége e a gamenek
 
     public ShipSpawner EnemySpawnSet;
-
     public MeteorSpawner meteorSpawner;
     bool BossIsActive = false;
 
@@ -61,7 +60,7 @@ public class CountdownTimer : MonoBehaviour
         {
             hasModifiedSpawnRate = true; 
             meteorSpawner.spawnrate = 1000000; // ne legyen meteor boss intrón
-            EnemySpawnSet.EnemySpawnInterval = 1000000;
+            EnemySpawnSet.EnemySpawnInterval = 1000000; // enemy se legyen
             StartCoroutine(ResetSpawnRateAfterSeconds(10f)); // utána legyen
             BossIsActive = true;
         }
@@ -70,7 +69,7 @@ public class CountdownTimer : MonoBehaviour
     IEnumerator ResetSpawnRateAfterSeconds(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        meteorSpawner.spawnrate = 0.5f; // Spawnrate visszaállítása
+        meteorSpawner.spawnrate = 2f; // Spawnrate visszaállítása, csak kevesebbre
     }
 
     IEnumerator HideMessageTextAfterSeconds(float seconds)

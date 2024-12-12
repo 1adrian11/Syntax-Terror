@@ -22,6 +22,7 @@ public class ShipSpawner : MonoBehaviour
     public Player_Movement Player { get; set; }
 
     [SerializeField] private Canvas GameOverCanvas;
+    [SerializeField] private Canvas uicanvas;
 
     [field: SerializeField]
     public Enemy_Spawner EnemySpawner { get; private set; }
@@ -77,7 +78,7 @@ public class ShipSpawner : MonoBehaviour
 
         List<Transform> borders = new() { Borders[0], Borders[1], Borders[2], Borders[3], Borders[4], Borders[5]};
         Enemy_Interface ship = new E_ship(PossibleEnemies[0], borders, E_SpawnPoint1.position);
-        List<Enemy_Interface> enemies = new() { ship, ship, ship };
+        List<Enemy_Interface> enemies = new() { ship };
 
         EnemySpawner.NextEnemyInRow(enemies); // Az eredeti hármas generálás megtartása
     }
@@ -115,6 +116,7 @@ public class ShipSpawner : MonoBehaviour
         else
         {
             GameOverCanvas.gameObject.SetActive(true);
+            uicanvas.gameObject.SetActive(false);
             HighScoreManager.SaveScore(Points);
             StopEnemySpawning();
         }

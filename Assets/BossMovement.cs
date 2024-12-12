@@ -1,51 +1,79 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BossMovement : MonoBehaviour
 {
     [field: SerializeField]
-    public Transform BulletSpawn1 {get; private set;}
+    public Transform BulletSpawn1 { get; private set; }
     [field: SerializeField]
-    public Transform BulletSpawn2 {get; private set;}
+    public Transform BulletSpawn2 { get; private set; }
     [field: SerializeField]
-    public GameObject Bullet {get; private set;}
+    public GameObject Bullet { get; private set; }
     [field: SerializeField]
-    public float ShootFrequency {get; private set;} //hány másodpercenként lő
+    public float ShootFrequency { get; private set; } // hány másodpercenként lő
     [field: SerializeField]
-    public float IfFire {get; private set;} = 0;
-    public Transform midPoint; // Az első célpont
-    public Transform leftPoint; // A bal oldali célpont
-    public Transform rightPoint; // A jobb oldali célpont
-    public float speedToMidPoint = 2f; // Sebesség az első célponthoz
-    public float speedBetweenPoints = 1f; // Sebesség a bal és jobb pont között
-    public float delayBeforeStart = 2f; // Késleltetés az első mozgás előtt (másodpercben)
+    public float IfFire { get; private set; } = 0;
 
-    private Transform currentTarget; // Az aktuális célpont
-    private bool movingToMidPoint = true; // Az objektum az első célponthoz mozog
+    public Transform midPoint; 
+    public Transform leftPoint; 
+    public Transform rightPoint; 
+    public float speedToMidPoint = 2f; // Sebesség középig
+    public float speedBetweenPoints = 1f; // Sebesség bal és jobb pont közt
+    public float delayBeforeStart = 2f; // Késleltetés az első mozgás előtt
+    public float delayAtPoints = 2f; // Várakozás a célpontokon
+
+    private Transform currentTarget; // Az aktuális pont
+    private bool movingToMidPoint = true;
     private float delayTimer; // Késleltetési időzítő
     public int BossHp;
+    public int maxhp;
+    private bool StartAttack = false;
+    private bool isWaiting = false; // Jelzi, hogy várakozik-e
+    public Hp_Bar HPBar;
+    public GameObject ShowHPBar; //boss előtt ne jelenjen meg a hp bar
+    public GameObject Show_ui; 
+    public GameObject ShowWictory;
+    public bool boss_hp_active = false;
 
     void Start()
     {
-        transform.position = new Vector2(0, 8); // Kezdő pozíció beállítása
+        ShowHPBar.gameObject.SetActive(false);
+        HPBar.SetMaxHealth(BossHp);
+        transform.position = new Vector2(0, 8); // Kezdő pozíció
         currentTarget = midPoint; // Kezdésként az első célpont
-        delayTimer = delayBeforeStart; // Késleltetési időzítő beállítása
+        delayTimer = delayBeforeStart; // Késleltetési időzítő
     }
 
     void Update()
     {
         if (delayTimer > 0)
         {
-            delayTimer -= Time.deltaTime; // Késleltetési időzítő csökkentése
+            delayTimer -= Time.deltaTime;
         }
         else
         {
-            MoveObject();
+            MoveObject(); //időzítő után mozgás 
+            if(boss_hp_active == false){
+                ShowHPBar.SetActive(true);
+                boss_hp_active = true;
+            }
+        }
+        if (StartAttack == true)
+        {
             Fire();
         }
+        /*if(Time.time > delayBeforeStart && boss_hp_active == false) {
+            ShowHPBar.SetActive(true); //boss hp mutatása
+            boss_hp_active = true;
+        }*/
     }
 
     void MoveObject()
     {
+        if (isWaiting)
+            return; // Ha várakozik, ne mozduljon tovább
+
         if (movingToMidPoint)
         {
             MoveTowardsTarget(midPoint, speedToMidPoint);
@@ -53,7 +81,8 @@ public class BossMovement : MonoBehaviour
             if (Vector2.Distance(transform.position, midPoint.position) < 0.1f)
             {
                 movingToMidPoint = false;
-                currentTarget = leftPoint;
+                StartCoroutine(WaitAtPoint(leftPoint));
+                StartAttack = true;
             }
         }
         else
@@ -62,7 +91,7 @@ public class BossMovement : MonoBehaviour
 
             if (Vector2.Distance(transform.position, currentTarget.position) < 0.1f)
             {
-                currentTarget = currentTarget == leftPoint ? rightPoint : leftPoint;
+                StartCoroutine(WaitAtPoint(currentTarget == leftPoint ? rightPoint : leftPoint));
             }
         }
     }
@@ -71,13 +100,15 @@ public class BossMovement : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
-    /*private void Fire(){
-        if(Time.time > (IfFire + ShootFrequency)) {
-            GameObject bull = Instantiate(Bullet);
-            bull.transform.position = BulletSpawn.position;  // a hajo elott jojjon letre a bullet
-            IfFire = Time.time;
-        }
-    }*/
+
+    IEnumerator WaitAtPoint(Transform nextTarget)
+    {
+        isWaiting = true; // Jelzi, hogy az objektum várakozik
+        yield return new WaitForSeconds(delayAtPoints); // Várakozás
+        isWaiting = false; // Várakozás vége
+        currentTarget = nextTarget; // Célpont frissítése
+    }
+
     private void Fire()
     {
         if (Time.time > (IfFire + ShootFrequency))
@@ -92,19 +123,33 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {    // lövedékkel ütközés
+    private void OnTriggerEnter2D(Collider2D other) // Lövedékkel ütközés
+    {
         ShootControll Bullet = other.GetComponent<ShootControll>();
-        if(Bullet != null) {
+        if (Bullet != null)
+        {
             IfHit(Bullet);
         }
     }
 
-    private void IfHit(ShootControll bullet) {
-        if(BossHp > 0) {
-            BossHp--;
-        } else {
-            Destroy(this.gameObject);
+    private void IfHit(ShootControll bullet)
+    {
+        if (StartAttack == true) // Ne sebződjön, amíg ő sem lő
+        {
+            if (BossHp >= 0)
+            {
+                BossHp--;
+                HPBar.SetHealth(BossHp);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+                SceneManager.LoadScene("Victory");
+                //ShowHPBar.SetActive(false); //hp bar is eltűnik
+                //Show_ui.SetActive(false); 
+                //ShowWictory.SetActive(true); 
+            }
+            Destroy(bullet.gameObject);
         }
-        Destroy(bullet.gameObject);
     }
 }

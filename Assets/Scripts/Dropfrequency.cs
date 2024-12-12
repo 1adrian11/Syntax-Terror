@@ -13,7 +13,7 @@ public class Dropfrequency : MonoBehaviour
     public float DropChanse {get; private set;} //hány % eséllyel droppol 1=100%
 
     public void Drop(Destroy_score Destroyable){
-        float Hz = Random.Range(0, 1);
+        float Hz = Random.Range(0, 100);
         if(Hz > DropChanse) {
             return;
         }
