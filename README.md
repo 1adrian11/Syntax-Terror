@@ -4,7 +4,7 @@ Töltsd le a játék forráskódját a GitHub repository-ból. Bizonyosodj meg r
 
 Projekt Megnyitása
 
-Nyisd meg a letöltött projektet a fejlesztői környezetedben (például Unity, Visual Studio).
+Nyisd meg a letöltött projektet a fejlesztői környezetedben (például Unity).
 
 Telepítsd a szükséges könyvtárakat és függőségeket a projektben. A követelményeket általában a projekt dokumentációjában találhatod meg.
 
